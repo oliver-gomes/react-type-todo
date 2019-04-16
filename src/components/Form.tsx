@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 export default class Form extends Component {
   render() {
-    return <div>Form Components
-        
-    </div>;
+    return <div>Form Components</div>;
   }
 }
