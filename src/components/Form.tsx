@@ -3,29 +3,57 @@ import { render } from "react-dom";
 
 interface IState {
   currentTask: string;
-  tasks: Array<string>;
+  tasks: Array<ITask>;
 }
 
-export default class Form extends Component<{}, {}> {
+interface ITask {
+  id: number;
+  value: string;
+  completed: boolean;
+}
+
+export default class Form extends Component<{}, IState> {
   state = {
     currentTask: "",
     tasks: []
   };
-  handleSubmit = (e: any) => {
+
+  public handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     this.setState({
       currentTask: "",
-      tasks: [...this.state.tasks, this.state.currentTask]
+      tasks: [
+        ...this.state.tasks,
+        {
+          id: this._timeInMilliseconds(),
+          value: this.state.currentTask,
+          completed: false
+        }
+      ]
     });
   };
 
-  renderTasks = () => {
-    return this.state.tasks.map((task: string, index: number) => {
-      return <div key={index}>{task}</div>;
+  public deleteTask = (id: number) => {
+    const filteredTasks: Array<ITask> = this.state.tasks.filter(
+      (task: ITask) => task.id !== id
+    );
+    this.setState({
+      tasks: filteredTasks
     });
   };
 
-  render() {
+  public renderTasks = () => {
+    return this.state.tasks.map((task: ITask, index: number) => {
+      return (
+        <div key={task.id}>
+          <span>{task.value}</span>
+          <button onClick={() => this.deleteTask(task.id)}>Delete</button>
+        </div>
+      );
+    });
+  };
+
+  public render() {
     return (
       <div>
         <h1>React Typescript Todo List</h1>
@@ -45,5 +73,9 @@ export default class Form extends Component<{}, {}> {
         <section>{this.renderTasks()}</section>
       </div>
     );
+  }
+  private _timeInMilliseconds(): number {
+    const date: Date = new Date();
+    return date.getTime();
   }
 }
