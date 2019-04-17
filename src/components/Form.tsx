@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 
+interface IState {
+  currentTask: string;
+  tasks: Array<string>;
+}
+
 export default class Form extends Component<{}, {}> {
   state = {
     currentTask: "",
@@ -14,7 +19,6 @@ export default class Form extends Component<{}, {}> {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <h1>React Typescript Todo List</h1>
