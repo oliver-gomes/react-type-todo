@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { render } from "react-dom";
 
 interface IState {
   currentTask: string;
@@ -15,6 +16,12 @@ export default class Form extends Component<{}, {}> {
     this.setState({
       currentTask: "",
       tasks: [...this.state.tasks, this.state.currentTask]
+    });
+  };
+
+  renderTasks = () => {
+    return this.state.tasks.map((task: string, index: number) => {
+      return <div key={index}>{task}</div>;
     });
   };
 
@@ -35,6 +42,7 @@ export default class Form extends Component<{}, {}> {
           />
           <button type="submit">Add Task</button>
         </form>
+        <section>{this.renderTasks()}</section>
       </div>
     );
   }
