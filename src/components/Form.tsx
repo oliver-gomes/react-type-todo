@@ -25,6 +25,7 @@ export default class Form extends Component<{}, {}> {
         <form onSubmit={e => this.handleSubmit(e)}>
           <input
             type="text"
+            value={this.state.currentTask}
             placeholder="Add a task"
             onChange={e =>
               this.setState({
