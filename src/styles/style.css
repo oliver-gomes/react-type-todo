@@ -1,0 +1,52 @@
+:root {
+  --background-dark: rgb(17, 20, 44);
+  --font-neon: rgb(5, 224, 151);
+}
+
+.App {
+  text-align: center;
+}
+
+body {
+  font-family: "Fira Code";
+  color: var(--font-neon);
+  background-color: var(--background-dark);
+  line-height: 1.3rem;
+}
+
+button {
+  height: 2.5rem;
+  border: none;
+  font-size: 1.3rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgb(86, 240, 189);
+}
+
+.is-completed {
+  text-decoration: line-through;
+}
+
+.tdl-input {
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+}
+
+.tdl-task {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 2px solid aquamarine;
+  background: transparent;
+  outline: none;
+}
+
+input,
+select,
+textarea {
+  color: #b9c2bf;
+}

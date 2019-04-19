@@ -52,8 +52,10 @@ export default class Form extends Component<{}, IState> {
   public renderTasks = () => {
     return this.state.tasks.map((task: ITask, index: number) => {
       return (
-        <div key={task.id}>
-          <span>{task.value}</span>
+        <div key={task.id} className="tdl-task">
+          <span className={task.completed ? "is-completed" : ""}>
+            {task.value}
+          </span>
           <button onClick={() => this.deleteTask(task.id)}>Delete</button>
           <button onClick={() => this.toggleDone(index)}>
             {task.completed ? "undo" : "done"}
@@ -70,6 +72,7 @@ export default class Form extends Component<{}, IState> {
         <form onSubmit={e => this.handleSubmit(e)}>
           <input
             type="text"
+            className="tdl-input"
             value={this.state.currentTask}
             placeholder="Add a task"
             onChange={e =>
