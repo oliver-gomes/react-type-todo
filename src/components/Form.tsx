@@ -42,12 +42,22 @@ export default class Form extends Component<{}, IState> {
     });
   };
 
+  public toggleDone(index: number): void {
+    let task: ITask[] = this.state.tasks.splice(index, 1);
+    task[0].completed = !task[0].completed;
+    const currentTasks: ITask[] = [...this.state.tasks, ...task];
+    this.setState({ tasks: currentTasks });
+  }
+
   public renderTasks = () => {
     return this.state.tasks.map((task: ITask, index: number) => {
       return (
         <div key={task.id}>
           <span>{task.value}</span>
           <button onClick={() => this.deleteTask(task.id)}>Delete</button>
+          <button onClick={() => this.toggleDone(index)}>
+            {task.completed ? "undo" : "done"}
+          </button>
         </div>
       );
     });
